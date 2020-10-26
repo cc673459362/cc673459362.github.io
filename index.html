@@ -158,7 +158,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -190,6 +190,74 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/27/%E8%B8%A9%E5%9D%91%E4%B9%8BWINDOWS-LCPWSTR%E8%BD%AC%E6%8D%A2%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/27/%E8%B8%A9%E5%9D%91%E4%B9%8BWINDOWS-LCPWSTR%E8%BD%AC%E6%8D%A2%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">踩坑之WINDOWS--LPCWSTR转换问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2020-10-27 00:10:11 / Modified: 00:15:05" itemprop="dateCreated datePublished" datetime="2020-10-27T00:10:11+08:00">2020-10-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Windows有些系统API的参数是WINDOWS宏定义出来的类型。<br>在使用ShellExecute调起外部EXE进程时，文件目录参数<br>typedef struct _SHELLEXECUTEINFOW {<br>  DWORD     cbSize;<br>  ULONG     fMask;<br>  HWND      hwnd;<br>  LPCWSTR   lpVerb;</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>  LPCWSTR   lpFile;</p>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>  LPCWSTR   lpParameters;<br>  LPCWSTR   lpDirectory;<br>  int       nShow;<br>  HINSTANCE hInstApp;<br>  void      *lpIDList;<br>  LPCWSTR   lpClass;<br>  HKEY      hkeyClass;<br>  DWORD     dwHotKey;<br>  union {<br>    HANDLE hIcon;<br>    HANDLE hMonitor;<br>  } DUMMYUNIONNAME;<br>  HANDLE    hProcess;<br>} SHELLEXECUTEINFOW, *LPSHELLEXECUTEINFOW;</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
