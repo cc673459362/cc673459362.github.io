@@ -278,7 +278,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/10/27/%E8%B8%A9%E5%9D%91%E4%B9%8BWINDOWS-LCPWSTR%E8%BD%AC%E6%8D%A2%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">踩坑之WINDOWS--LPCWSTR转换问题</a>
+            <a href="/2020/10/27/%E8%B8%A9%E5%9D%91%E4%B9%8BWINDOWS-LCPWSTR%E8%BD%AC%E6%8D%A2%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Windows调起外部EXE 的Shellexecute踩坑</a>
         </h2>
 
         <div class="post-meta-container">
@@ -290,7 +290,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2020-10-27 00:10:11 / Modified: 00:15:05" itemprop="dateCreated datePublished" datetime="2020-10-27T00:10:11+08:00">2020-10-27</time>
+      <time title="Created: 2020-10-27 00:10:11 / Modified: 01:25:41" itemprop="dateCreated datePublished" datetime="2020-10-27T00:10:11+08:00">2020-10-27</time>
     </span>
 
   
@@ -303,9 +303,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>Windows有些系统API的参数是WINDOWS宏定义出来的类型。<br>在使用ShellExecute调起外部EXE进程时，文件目录参数<br>typedef struct _SHELLEXECUTEINFOW {<br>  DWORD     cbSize;<br>  ULONG     fMask;<br>  HWND      hwnd;<br>  LPCWSTR   lpVerb;</p>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>  LPCWSTR   lpFile;</p>
-<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>  LPCWSTR   lpParameters;<br>  LPCWSTR   lpDirectory;<br>  int       nShow;<br>  HINSTANCE hInstApp;<br>  void      *lpIDList;<br>  LPCWSTR   lpClass;<br>  HKEY      hkeyClass;<br>  DWORD     dwHotKey;<br>  union {<br>    HANDLE hIcon;<br>    HANDLE hMonitor;<br>  } DUMMYUNIONNAME;<br>  HANDLE    hProcess;<br>} SHELLEXECUTEINFOW, *LPSHELLEXECUTEINFOW;</p>
+          <h2 id="1-在被调进程中用Windows-API-获取当前目录获取到的是调起进程目录。"><a href="#1-在被调进程中用Windows-API-获取当前目录获取到的是调起进程目录。" class="headerlink" title="1. 在被调进程中用Windows API 获取当前目录获取到的是调起进程目录。"></a>1. 在被调进程中用Windows API 获取当前目录获取到的是调起进程目录。</h2><h2 id="必须要用getmodulefilename-这个API可以获取到自己这个exe所在的目录。"><a href="#必须要用getmodulefilename-这个API可以获取到自己这个exe所在的目录。" class="headerlink" title="必须要用getmodulefilename 这个API可以获取到自己这个exe所在的目录。"></a>必须要用getmodulefilename 这个API可以获取到自己这个exe所在的目录。</h2><h2 id="2-WINDOWS-API中的字符串类型LOCWSTR转换问题。"><a href="#2-WINDOWS-API中的字符串类型LOCWSTR转换问题。" class="headerlink" title="2. WINDOWS API中的字符串类型LOCWSTR转换问题。"></a>2. WINDOWS API中的字符串类型LOCWSTR转换问题。</h2><p>Windows有些系统API的参数是WINDOWS宏定义出来的类型。<br>在使用ShellExecute调起外部EXE进程时，文件目录参数<br>typedef struct _SHELLEXECUTEINFOW {<br>  DWORD     cbSize;<br>  ULONG     fMask;<br>  HWND      hwnd;<br>  LPCWSTR   lpVerb;</p>
+<h3 id><a href="#" class="headerlink" title></a></h3><p>  LPCWSTR   lpFile;</p>
+<h3 id="-1"><a href="#-1" class="headerlink" title></a></h3><p>  LPCWSTR   lpParameters;<br>  LPCWSTR   lpDirectory;<br>  int       nShow;<br>  HINSTANCE hInstApp;<br>  void      *lpIDList;<br>  LPCWSTR   lpClass;<br>  HKEY      hkeyClass;<br>  DWORD     dwHotKey;<br>  union {<br>    HANDLE hIcon;<br>    HANDLE hMonitor;<br>  } DUMMYUNIONNAME;<br>  HANDLE    hProcess;<br>} SHELLEXECUTEINFOW, *LPSHELLEXECUTEINFOW;</p>
+<p>这里按照网上先把 string 转到wstring， 然后用C的（LPCWSTR）去做转换却一直调起失败，发现是转换问题。<br>后来直接搜到了一个将string转换到LPCWSTR的函数才成功。（这个函数待写。。TODO）</p>
 
       
     </div>
